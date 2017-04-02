@@ -1,0 +1,49 @@
+.box{
+    height: 100px;
+    width: 40%;
+    padding: 20px;
+    margin: 2% 0 5% 5%;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-left-color: #449d44;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 200%;
+    background-color: #b9def0;
+}
+.box:hover{
+   box-shadow:5px 5px #333;
+    text-decoration: none;
+    font-size: 300%;
+}
+.pageBox{
+    height: 50px;
+    width: 20%;
+    padding: 10px;
+    margin: 20px 0 50px 250px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 175%
+}
+.pageBox:hover{
+    box-shadow:5px 5px #333;
+    text-decoration: none;
+    font-size: 200%;
+}
+.accountBox{
+    height: 10%;
+    width: 10%;
+    padding: 10px;
+    margin: 0 0 1% 45%;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 125%;
+    background-color: #b2dba1;
+}
+.accountBox:hover{
+    box-shadow:5px 5px #333;
+    text-decoration: none;
+    font-size: 150%;
+}
