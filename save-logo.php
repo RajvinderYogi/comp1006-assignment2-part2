@@ -1,5 +1,5 @@
 <?php ob_start();
-
+$pageTitle = 'Save logo';
 require_once ('authorization.php');
 require_once ('header.php');
 ?>
@@ -39,10 +39,10 @@ try {
         $logo_image = uniqid("") . "%$image_title";
 
         $temporary_name = $_FILES['logo_image']['tmp_name'];
-        move_uploaded_file($temporary_name, "logos/$logo_image");
+        move_uploaded_file($temporary_name, "images/$logo_image");
 
     }
-    if ($ok) {
+    if ($ok == true) {
 
         require_once('database-connect.php');
 

@@ -8,50 +8,30 @@
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
+<nav class="navbar navbar-default">
+    <ul class="nav nav-pills">
+
 <?php
 session_start();
 
-try {
-$logo_id = null;
-$logo_image=null;
 
+require_once ('database-connect.php');
+$sql = "SELECT logo_id, logo_image FROM update_logo ORDER BY logo_id DESC LIMIT 1 ";
 
+// run query and store results
+$cmd = $conn->prepare($sql);
+$cmd->execute();
+$logos = $cmd->fetchAll();
 
-if (!empty($_GET['logo_id'])) {
-    if (is_numeric($_GET['logo_id'])) {
-
-        $logo_id = $_GET['logo_id'];
-        // connect
-        require_once('database-connect.php');
-        $sql = "SELECT logo_image FROM update_logo WHERE logo_id = :logo_id LIMIT 1";
-        $cmd = $conn->prepare($sql);
-        $cmd->bindParam(':logo_id', $logo_id, PDO::PARAM_INT);
-        $cmd->execute();
-        $logo = $cmd->fetch();
-
-
-        $logo_image = $logo['logo_image'];
-
-        $conn = null;
+foreach ($logos as $logo){
+    echo ' <li><a href="index.php"
+               class="navbar-brand">';
+    if (!empty($logo['logo_image'])) {
+        echo '<div><img src="images/'. $logo['logo_image'] .'"  /></div> ';
 
     }
-
+    echo '</a></li>';
 }
-?>
-<nav class="navbar navbar-default">
-    <ul class="nav nav-pills">
-        <li><a href="index.php"
-               class="navbar-brand">
-                <?php
-                if (!empty($logo['logo_image'])) {
-                    echo '<img src="logos/' . $logo['logo_image'] . '" class="thumb" />';
-                }
-                ?>
-            </a>
-        </li>
-
-
-        <?php
 
 
         if (empty($_SESSION['user_id'])) {
@@ -74,9 +54,5 @@ if (!empty($_GET['logo_id'])) {
     ?>
 </nav>
 <?php
-}
-catch (exception $e) {
-    header('location:error.php');
-}
-require_once('footer.php');
+
 ob_flush(); ?>
